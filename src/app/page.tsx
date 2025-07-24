@@ -1,103 +1,95 @@
-import Image from "next/image";
+"use client";
+import React, { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import IncidentPlayer from "./components/IncidentPlayer";
+import IncidentList from "./components/IncidentList";
+import IncidentTimeline from "./components/IncidentTimeline";
+
+interface Incident {
+  id: number;
+  thumbnailUrl: string;
+  type: string;
+  camera: { location: string };
+  tsStart: string;
+  tsEnd: string;
+  resolved: boolean;
+}
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [incidents, setIncidents] = useState<Incident[]>([]);
+  const [currentTime, setCurrentTime] = useState<Date>(new Date());
+  const [loading, setLoading] = useState(true);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    fetch("/api/incidents?resolved=false")
+      .then((res) => res.json())
+      .then((data) => setIncidents(data))
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Find the incident closest to the currentTime
+  const closestIncident = incidents.reduce((closest, incident) => {
+    const incidentTime = new Date(incident.tsStart).getTime();
+    const current = currentTime.getTime();
+    if (!closest) return incident;
+    const closestTime = new Date(closest.tsStart).getTime();
+    return Math.abs(incidentTime - current) < Math.abs(closestTime - current)
+      ? incident
+      : closest;
+  }, undefined as Incident | undefined);
+
+  return (
+    <div className="min-h-screen bg-[#181a20]">
+      <Navbar />
+      <main className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 p-8">
+        {/* Left: Incident Player and Timeline */}
+        <div className="flex-1 flex flex-col items-center">
+          {loading ? (
+            <div className="flex flex-col items-center justify-center h-[400px]">
+              <svg className="animate-spin h-12 w-12 text-blue-400 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+              </svg>
+              <div className="text-gray-300 text-lg">Loading incidents...</div>
+            </div>
+          ) : (
+            <>
+              {/* Selected time and incident label */}
+              <div className="mb-4 w-[480px]">
+                <div className="relative bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col items-center border-l-4 border-blue-500">
+                  <div className="absolute left-0 top-0 h-full w-1 bg-blue-500 rounded-l-lg" />
+                  <div className="text-xs text-gray-400 mb-1 tracking-wide uppercase">Selected Time</div>
+                  <div className="text-2xl font-mono font-bold mb-1 text-blue-400">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                  {closestIncident ? (
+                    <div className="text-base text-gray-200 flex items-center gap-2">
+                      <span className={`font-semibold px-2 py-1 rounded ${closestIncident.type === 'Unauthorised Access' ? 'bg-red-900 text-red-300' : closestIncident.type === 'Gun Threat' ? 'bg-yellow-900 text-yellow-300' : 'bg-blue-900 text-blue-300'}`}>{closestIncident.type}</span>
+                      <span className="text-gray-500">at</span>
+                      <span className="font-semibold">{closestIncident.camera.location}</span>
+                    </div>
+                  ) : (
+                    <div className="text-base text-gray-500">No incident at this time</div>
+                  )}
+                </div>
+              </div>
+              <IncidentPlayer
+                mainSrc={closestIncident ? closestIncident.thumbnailUrl : "/thumbnails/incident1.jpg"}
+                thumbnails={["/thumbnails/incident2.jpg", "/thumbnails/incident3.jpg"]}
+              />
+              <div className="mt-8">
+                <IncidentTimeline
+                  incidents={incidents.map(i => ({ id: i.id, tsStart: i.tsStart, type: i.type, location: i.camera.location }))}
+                  currentTime={currentTime}
+                  onScrub={setCurrentTime}
+                />
+              </div>
+            </>
+          )}
+        </div>
+        {/* Right: Incident List */}
+        <div className="w-full md:w-[400px]">
+          <IncidentList />
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

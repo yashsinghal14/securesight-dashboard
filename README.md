@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SecureSight Dashboard
 
-## Getting Started
+A CCTV monitoring dashboard for SecureSight, built with Next.js 15, Prisma, and SQLite.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Dashboard with Navbar, Incident Player, and Incident List
+- Optimistic UI for resolving incidents
+- API routes for fetching and resolving incidents
+- Seed script for demo data
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Set up the database:**
+   ```bash
+   npx prisma migrate dev --name init
+   npx prisma db seed
+   ```
 
-## Learn More
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Deploy easily to [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
+- Make sure to set up your `.env` file in the deployment environment.
 
-## Deploy on Vercel
+## Technical Decisions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js 15 App Router** for modern React and API routes
+- **Prisma + SQLite** for easy local development and seeding
+- **Tailwind CSS** for rapid, clean UI styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## If I had more time...
+
+- Implement the 24-hour incident timeline under the player
+- Add a 3D view with React Three Fibre
+- Add authentication and user roles
+- Improve error handling and loading states
+- Add real video feeds and live updates
+
+## Credits
+
+- [Figma design](#) (link if provided)
+- Placeholder images from [Unsplash](https://unsplash.com/) or similar
