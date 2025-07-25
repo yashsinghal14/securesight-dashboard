@@ -1,0 +1,264 @@
+{
+  "cameras": [
+    {
+      "id": 1,
+      "name": "Shop Floor A",
+      "location": "First Floor"
+    },
+    {
+      "id": 2,
+      "name": "Vault",
+      "location": "Basement"
+    },
+    {
+      "id": 3,
+      "name": "Entrance",
+      "location": "Ground Floor"
+    },
+    {
+      "id": 4,
+      "name": "Shop Floor A",
+      "location": "First Floor"
+    },
+    {
+      "id": 5,
+      "name": "Vault",
+      "location": "Basement"
+    },
+    {
+      "id": 6,
+      "name": "Entrance",
+      "location": "Ground Floor"
+    }
+  ],
+  "incidents": [
+    {
+      "id": 1,
+      "cameraId": 1,
+      "type": "Unauthorised Access",
+      "tsStart": 1753294739848,
+      "tsEnd": 1753295512828,
+      "thumbnailUrl": "/thumbnails/incident1.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 2,
+      "cameraId": 2,
+      "type": "Gun Threat",
+      "tsStart": 1753254012181,
+      "tsEnd": 1753254055688,
+      "thumbnailUrl": "/thumbnails/incident2.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 3,
+      "cameraId": 3,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753332180082,
+      "tsEnd": 1753332635529,
+      "thumbnailUrl": "/thumbnails/incident3.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 4,
+      "cameraId": 1,
+      "type": "Unauthorised Access",
+      "tsStart": 1753338300410,
+      "tsEnd": 1753338934160,
+      "thumbnailUrl": "/thumbnails/incident4.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 5,
+      "cameraId": 2,
+      "type": "Gun Threat",
+      "tsStart": 1753326534196,
+      "tsEnd": 1753327336707,
+      "thumbnailUrl": "/thumbnails/incident5.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 6,
+      "cameraId": 3,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753262710708,
+      "tsEnd": 1753263312108,
+      "thumbnailUrl": "/thumbnails/incident6.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 7,
+      "cameraId": 1,
+      "type": "Unauthorised Access",
+      "tsStart": 1753304282530,
+      "tsEnd": 1753305928594,
+      "thumbnailUrl": "/thumbnails/incident1.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 8,
+      "cameraId": 2,
+      "type": "Gun Threat",
+      "tsStart": 1753258140932,
+      "tsEnd": 1753259628500,
+      "thumbnailUrl": "/thumbnails/incident2.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 9,
+      "cameraId": 3,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753257438184,
+      "tsEnd": 1753257810881,
+      "thumbnailUrl": "/thumbnails/incident3.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 10,
+      "cameraId": 1,
+      "type": "Unauthorised Access",
+      "tsStart": 1753325288493,
+      "tsEnd": 1753325887739,
+      "thumbnailUrl": "/thumbnails/incident4.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 11,
+      "cameraId": 2,
+      "type": "Gun Threat",
+      "tsStart": 1753320529760,
+      "tsEnd": 1753321490733,
+      "thumbnailUrl": "/thumbnails/incident5.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 12,
+      "cameraId": 3,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753317345652,
+      "tsEnd": 1753318007917,
+      "thumbnailUrl": "/thumbnails/incident6.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 13,
+      "cameraId": 1,
+      "type": "Unauthorised Access",
+      "tsStart": 1753365324987,
+      "tsEnd": 1753365573251,
+      "thumbnailUrl": "/thumbnails/incident1.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 14,
+      "cameraId": 2,
+      "type": "Gun Threat",
+      "tsStart": 1753367599850,
+      "tsEnd": 1753369174504,
+      "thumbnailUrl": "/thumbnails/incident2.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 15,
+      "cameraId": 3,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753341026237,
+      "tsEnd": 1753341266413,
+      "thumbnailUrl": "/thumbnails/incident3.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 16,
+      "cameraId": 4,
+      "type": "Unauthorised Access",
+      "tsStart": 1753402154544,
+      "tsEnd": 1753403207656,
+      "thumbnailUrl": "/thumbnails/incident4.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 17,
+      "cameraId": 5,
+      "type": "Gun Threat",
+      "tsStart": 1753347474819,
+      "tsEnd": 1753347880752,
+      "thumbnailUrl": "/thumbnails/incident5.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 18,
+      "cameraId": 6,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753423266005,
+      "tsEnd": 1753424371329,
+      "thumbnailUrl": "/thumbnails/incident6.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 19,
+      "cameraId": 1,
+      "type": "Unauthorised Access",
+      "tsStart": 1753387522304,
+      "tsEnd": 1753388681792,
+      "thumbnailUrl": "/thumbnails/incident1.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 20,
+      "cameraId": 2,
+      "type": "Gun Threat",
+      "tsStart": 1753422274305,
+      "tsEnd": 1753422956679,
+      "thumbnailUrl": "/thumbnails/incident2.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 21,
+      "cameraId": 3,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753369314547,
+      "tsEnd": 1753371099527,
+      "thumbnailUrl": "/thumbnails/incident3.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 22,
+      "cameraId": 4,
+      "type": "Unauthorised Access",
+      "tsStart": 1753396794687,
+      "tsEnd": 1753398256014,
+      "thumbnailUrl": "/thumbnails/incident4.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 23,
+      "cameraId": 5,
+      "type": "Gun Threat",
+      "tsStart": 1753407413434,
+      "tsEnd": 1753408137518,
+      "thumbnailUrl": "/thumbnails/incident5.jpg",
+      "resolved": 0
+    },
+    {
+      "id": 24,
+      "cameraId": 6,
+      "type": "Suspicious Loitering",
+      "tsStart": 1753359104458,
+      "tsEnd": 1753360785330,
+      "thumbnailUrl": "/thumbnails/incident6.jpg",
+      "resolved": 0
+    }
+  ],
+  "exportedAt": "2025-07-25T07:41:34.387Z",
+  "summary": {
+    "totalCameras": 6,
+    "totalIncidents": 24,
+    "resolvedIncidents": 0,
+    "unresolvedIncidents": 24,
+    "incidentsByType": {
+      "Unauthorised Access": 8,
+      "Gun Threat": 8,
+      "Suspicious Loitering": 8
+    }
+  }
+}
