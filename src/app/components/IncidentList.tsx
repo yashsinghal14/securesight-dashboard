@@ -16,7 +16,6 @@ interface Incident {
 
 export default function IncidentList() {
   const [incidents, setIncidents] = useState<Incident[]>([]);
-  const [resolving, setResolving] = useState<Set<number>>(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,14 +37,16 @@ export default function IncidentList() {
   }, []);
 
   const handleResolve = async (id: number) => {
-    setResolving((prev) => new Set(prev).add(id));
     setIncidents((prev) => prev.filter((i) => i.id !== id)); // Optimistic UI
     try {
       const res = await fetch(`/api/incidents/${id}/resolve`, { method: 'PATCH' });
       if (!res.ok) throw new Error('Failed to resolve incident');
       toast.success('Incident resolved!');
-    } catch (err) {
+    } catch (error) {
+      console.error('Error resolving incident:', error);
       toast.error('Failed to resolve incident.');
+      // Revert optimistic update by refetching
+      fetchIncidents();
     }
   };
 

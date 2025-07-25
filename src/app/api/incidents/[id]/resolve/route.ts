@@ -5,9 +5,10 @@ const prisma = new PrismaClient();
 
 export async function PATCH(
   request: NextRequest,
-  context: any
+  context: { params: Promise<{ id: string }> }
 ) {
-  const id = Number(context.params.id);
+  const { id: idParam } = await context.params;
+  const id = Number(idParam);
   if (isNaN(id)) {
     return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
   }
