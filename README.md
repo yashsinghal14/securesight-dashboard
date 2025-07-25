@@ -2,6 +2,8 @@
 
 A comprehensive CCTV monitoring and security incident management dashboard built with Next.js 15, TypeScript, Prisma ORM, and SQLite. SecureSight provides real-time security monitoring capabilities with an intuitive interface for security personnel to track, review, and resolve security incidents.
 
+🌐 **Live Demo**: [https://securesight-dashboard-ht8i4xn8x-yash-singhals-projects-17ce8366.vercel.app/](https://securesight-dashboard-ht8i4xn8x-yash-singhals-projects-17ce8366.vercel.app/)
+
 ## 🚀 Features
 
 ### Core Functionality
@@ -68,6 +70,12 @@ A comprehensive CCTV monitoring and security incident management dashboard built
 5. **Open your browser:**
    Navigate to [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
+## 🌐 Live Demo
+
+Experience SecureSight Dashboard live at: [https://securesight-dashboard-ht8i4xn8x-yash-singhals-projects-17ce8366.vercel.app/](https://securesight-dashboard-ht8i4xn8x-yash-singhals-projects-17ce8366.vercel.app/)
+
+> **Note**: The live demo uses a PostgreSQL database hosted on Neon.tech for production deployment.
+
 ## 📊 Database Schema
 
 The application uses a relational database with the following models:
@@ -110,8 +118,11 @@ The application uses a relational database with the following models:
 ### Environment Variables
 Create a `.env` file for production:
 ```env
+# For production (PostgreSQL/Neon.tech)
+DATABASE_URL="postgresql://your-connection-string"
+
+# For local development (SQLite)
 DATABASE_URL="file:./dev.db"
-# Add other environment variables as needed
 ```
 
 ## 🏗️ Project Structure
